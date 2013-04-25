@@ -1,0 +1,6 @@
+<project name="assets-management" url="https://github.com/Knowledge-Players/assets-management" license="MIT">
+    <user name="knowledge-players"/>
+    <tag v="flash"/>
+    <description>Assets management utils. Port from krechagames/assets-management</description>
+    <version name="0.1">First commit</version>
+</project>

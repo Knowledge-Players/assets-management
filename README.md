@@ -29,5 +29,3 @@ Try it yourself
 ---------------
 
 Go see the example in the sample directory. You can compile it with juste Haxe, or with NME.
-
-**Special thanks to  for the original library**

@@ -1,6 +1,7 @@
-<project name="assets-management" url="https://github.com/Knowledge-Players/assets-management" license="MIT">
+<project name="ExAM" url="https://github.com/Knowledge-Players/assets-management" license="MIT">
     <user name="knowledge-players"/>
     <tag v="flash"/>
-    <description>Assets management utils. Port from krechagames/assets-management</description>
-    <version name="0.1">First commit</version>
+    <tag v="utility"/>
+    <description>Assets management utility without embedding assets in SWF (smaller file). Port from https://github.com/krechagames/assets-management</description>
+    <version name="1.0">First commit</version>
 </project>

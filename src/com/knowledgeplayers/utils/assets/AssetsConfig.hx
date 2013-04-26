@@ -9,7 +9,7 @@ import com.knowledgeplayers.utils.assets.loaders.concrete.RawDataAsset;
 import com.knowledgeplayers.utils.assets.loaders.concrete.SoundAsset;
 import com.knowledgeplayers.utils.assets.loaders.concrete.TextAsset;
 
-import nme.events.Event;
+import flash.events.Event;
 //import flash.utils.Dictionary;
 
 /*

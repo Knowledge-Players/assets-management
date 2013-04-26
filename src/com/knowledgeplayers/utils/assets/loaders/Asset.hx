@@ -1,11 +1,11 @@
 package com.knowledgeplayers.utils.assets.loaders;
 
 import flash.events.Event;
-import nme.events.ProgressEvent;
-import nme.events.IOErrorEvent;
-import nme.events.SecurityErrorEvent;
-import nme.errors.IllegalOperationError;
-import nme.events.EventDispatcher;
+import flash.events.ProgressEvent;
+import flash.events.IOErrorEvent;
+import flash.events.SecurityErrorEvent;
+import flash.errors.IllegalOperationError;
+import flash.events.EventDispatcher;
 import com.knowledgeplayers.utils.assets.interfaces.IAsset;
 
 class Asset extends EventDispatcher, implements IAsset {

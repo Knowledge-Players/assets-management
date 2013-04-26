@@ -4,14 +4,14 @@ package com.knowledgeplayers.utils.assets.loaders.concrete;
 import flash.system.ImageDecodingPolicy;
 import flash.system.LoaderContext;
 #end
-import nme.display.Bitmap;
-import nme.display.Loader;
-import nme.display.MovieClip;
-import nme.events.Event;
-import nme.events.IOErrorEvent;
-import nme.events.ProgressEvent;
-import nme.events.SecurityErrorEvent;
-import nme.net.URLRequest;
+import flash.display.Bitmap;
+import flash.display.Loader;
+import flash.display.MovieClip;
+import flash.events.Event;
+import flash.events.IOErrorEvent;
+import flash.events.ProgressEvent;
+import flash.events.SecurityErrorEvent;
+import flash.net.URLRequest;
 import com.knowledgeplayers.utils.assets.loaders.Asset;
 
 class ImageAsset extends Asset {

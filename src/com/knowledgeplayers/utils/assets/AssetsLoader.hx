@@ -5,10 +5,10 @@ import haxe.FastList;
 import com.knowledgeplayers.utils.assets.interfaces.IAsset;
 import com.knowledgeplayers.utils.assets.interfaces.IAssetsLoader;
 
-import nme.events.Event;
-import nme.events.EventDispatcher;
-import nme.events.IOErrorEvent;
-import nme.events.SecurityErrorEvent;
+import flash.events.Event;
+import flash.events.EventDispatcher;
+import flash.events.IOErrorEvent;
+import flash.events.SecurityErrorEvent;
 
 class AssetsLoader extends EventDispatcher, implements IAssetsLoader {
 

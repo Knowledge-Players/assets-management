@@ -1,6 +1,6 @@
 package com.knowledgeplayers.utils.assets.interfaces;
 
-import nme.events.IEventDispatcher;
+import flash.events.IEventDispatcher;
 
 interface IAsset implements IEventDispatcher {
 	var id (default, default):String;

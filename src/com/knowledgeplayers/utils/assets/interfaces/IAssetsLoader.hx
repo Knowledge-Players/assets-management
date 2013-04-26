@@ -1,7 +1,7 @@
 package com.knowledgeplayers.utils.assets.interfaces;
 
 import haxe.FastList;
-import nme.events.IEventDispatcher;
+import flash.events.IEventDispatcher;
 
 interface IAssetsLoader implements IEventDispatcher {
 

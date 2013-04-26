@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+    <group name="common">
+        <asset id="octocat" url="assets/stormtroopocat.jpg" type="image"/>
+        <asset id="struct" url="assets/structure.xml" type="text"/>
+        <asset id="music" url="assets/Nyan Cat Theme.mp3" type="sound"/>
+    </group>
+
+    <!--<group name="x1">
+        <asset id="bg" url="assets/textures/bg@x1.jpg" type="image"/>
+        <asset id="logotype" url="assets/textures/logotype@x1.jpg" type="image"/>
+
+        <asset id="atlas" url="assets/textures/atlas@x1.png" type="image"/>
+        <asset id="atlas_xml" url="assets/textures/atlas@x1.xml" type="text"/>
+
+        <asset id="compressed_texture" url="assets/textures/compressed_texture@x1.atf" type="raw"/>
+    </group>-->
+</data>

@@ -1,11 +1,11 @@
 package com.knowledgeplayers.utils.assets.loaders.concrete;
 
-import nme.events.Event;
-import nme.events.IOErrorEvent;
-import nme.events.ProgressEvent;
-import nme.events.SecurityErrorEvent;
-import nme.media.Sound;
-import nme.net.URLRequest;
+import flash.events.Event;
+import flash.events.IOErrorEvent;
+import flash.events.ProgressEvent;
+import flash.events.SecurityErrorEvent;
+import flash.media.Sound;
+import flash.net.URLRequest;
 import com.knowledgeplayers.utils.assets.loaders.Asset;
 
 class SoundAsset extends Asset {

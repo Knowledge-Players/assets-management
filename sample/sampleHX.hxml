@@ -1,0 +1,4 @@
+-swf exam.swf
+-swf-version 11
+-main Main
+-cp ../src

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <meta title="ExAMTest" package="com.knowledgeplayers.exam" version="1.0.0" company="Knowledge-Players"/>
+    <app file="Main" main="Main" swf-version="11"/>
+
+    <window width="960" height="580" background="0xFFFFFF" fps="60" fullscreen="false" resizable="true"/>
+
+
+    <set name="BUILD_DIR" value="bin"/>
+    <set name="SWF_VERSION" value="11"/>
+
+    <classpath name="."/>
+
+    <haxelib name="nme"/>
+
+    <!-- Once you've installed ExAM with haxelib, use <haxelib/> -->
+    <classpath name="../src"/>
+    <!-- <haxelib name="ExAM"/> -->
+
+</project>

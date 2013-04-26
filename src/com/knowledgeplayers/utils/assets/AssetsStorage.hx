@@ -1,13 +1,13 @@
 package com.knowledgeplayers.utils.assets;
 
-import nme.media.Sound;
+import flash.media.Sound;
 import com.knowledgeplayers.utils.assets.loaders.concrete.SoundAsset;
 import com.knowledgeplayers.utils.assets.loaders.concrete.TextAsset;
 import com.knowledgeplayers.utils.assets.loaders.concrete.ImageAsset;
-import nme.display.BitmapData;
+import flash.display.BitmapData;
 import com.knowledgeplayers.utils.assets.interfaces.IAsset;
 import com.knowledgeplayers.utils.assets.loaders.Asset;
-import nme.events.Event;
+import flash.events.Event;
 
 class AssetsStorage{
 

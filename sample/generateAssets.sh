@@ -7,8 +7,16 @@ find $1 -a -type f -a ! -path *.svn* -a ! -name .DS_Store -a ! -regex '.*[o|t]tf
 do
 	filename=${f##*/}
 	filename=${filename%.*}
-	node="\t<asset id=\"$filename\" url=\""${f//\/\//\/}"\""
-	if [[ $f == *.xml ]] || [[ $f == *.txt ]]; then
+	url=${f//\/\//\/}
+	url=${url#./}
+	node="\t<asset id=\"$filename\" url=\""$url"\""
+	if [[ $f == *spritesheets* ]]; then
+		if [[ $f == *.xml ]]; then
+			node=$node" type=\"spritesheet\"/>"
+		else
+			node=""
+		fi
+	elif [[ $f == *.xml ]] || [[ $f == *.txt ]]; then
 		node=$node" type=\"text\"/>"
 	elif [[ $f == *.png ]] || [[ $f == *.jpg ]]; then
 		node=$node" type=\"image\"/>"
@@ -17,7 +25,9 @@ do
 	else
 		node=$node" type=\"raw\"/>"
 	fi
-	echo -e $node >> $OUTPUT_FILE
+	if [[ $node != "" ]]; then
+		echo -e $node >> $OUTPUT_FILE
+	fi
 done
 echo " </group>
 </data>" >> $OUTPUT_FILE

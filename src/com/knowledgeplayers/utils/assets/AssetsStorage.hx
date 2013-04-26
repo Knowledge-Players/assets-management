@@ -1,5 +1,7 @@
 package com.knowledgeplayers.utils.assets;
 
+import com.knowledgeplayers.utils.assets.loaders.concrete.SpritesheetAsset;
+import aze.display.TilesheetEx;
 import flash.media.Sound;
 import com.knowledgeplayers.utils.assets.loaders.concrete.SoundAsset;
 import com.knowledgeplayers.utils.assets.loaders.concrete.TextAsset;
@@ -73,6 +75,17 @@ class AssetsStorage{
 		}
 		else{
 			trace("[Assets] There is no Sound asset with an ID of \"" + id + "\"");
+		}
+		return null;
+	}
+
+	public static function getSpritesheet(id: String):Null<TilesheetEx>
+	{
+		if(container.exists(id) && Std.is(container.get(id), SpritesheetAsset)){
+			return cast(container.get(id), SpritesheetAsset).getTilesheet();
+		}
+		else{
+			trace("[Assets] There is no Spritesheet asset with an ID of \"" + id + "\"");
 		}
 		return null;
 	}

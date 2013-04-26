@@ -1,6 +1,8 @@
 package com.knowledgeplayers.utils.assets;
 
+#if nme
 import com.knowledgeplayers.utils.assets.loaders.concrete.SpritesheetAsset;
+#end
 import com.knowledgeplayers.utils.assets.interfaces.IAsset;
 import haxe.xml.Fast;
 import haxe.FastList;
@@ -60,7 +62,9 @@ class AssetsConfig extends TextAsset {
 		loaders = new Hash<Class<Asset>>();
 
 		registerType("image", ImageAsset);
+		#if nme
 		registerType("spritesheet", SpritesheetAsset);
+		#end
 		registerType("text", TextAsset);
 		registerType("sound", SoundAsset);
 		registerType("raw", RawDataAsset);

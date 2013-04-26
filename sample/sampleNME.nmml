@@ -12,6 +12,7 @@
 
     <classpath name="."/>
 
+    <haxelib name="tilelayer"/>
     <haxelib name="nme"/>
 
     <!-- Once you've installed ExAM with haxelib, use <haxelib/> -->

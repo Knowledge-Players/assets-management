@@ -1,3 +1,4 @@
+#if nme
 package com.knowledgeplayers.utils.assets.loaders.concrete;
 
 import flash.display.BitmapData;
@@ -50,3 +51,4 @@ class SpritesheetAsset extends TextAsset {
 		dispatchEvent(new Event(Event.COMPLETE));
 	}
 }
+#end

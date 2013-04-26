@@ -1,7 +1,9 @@
 package com.knowledgeplayers.utils.assets;
 
+#if nme
 import com.knowledgeplayers.utils.assets.loaders.concrete.SpritesheetAsset;
 import aze.display.TilesheetEx;
+#end
 import flash.media.Sound;
 import com.knowledgeplayers.utils.assets.loaders.concrete.SoundAsset;
 import com.knowledgeplayers.utils.assets.loaders.concrete.TextAsset;
@@ -79,6 +81,7 @@ class AssetsStorage{
 		return null;
 	}
 
+	#if nme
 	public static function getSpritesheet(id: String):Null<TilesheetEx>
 	{
 		if(container.exists(id) && Std.is(container.get(id), SpritesheetAsset)){
@@ -89,6 +92,7 @@ class AssetsStorage{
 		}
 		return null;
 	}
+	#end
 
 	public static function removeAsset(id:String):Void {
 		var asset:IAsset = getAsset(id);

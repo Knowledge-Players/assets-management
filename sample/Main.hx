@@ -67,9 +67,9 @@ class Main{
 	 * @param event
 	 */
 	private function loadAssetsCompleteHandler(event:Event):Void {
-		var git:Bitmap = new Bitmap(AssetsStorage.getBitmapData("octocat"));
-		var myXml:Xml = AssetsStorage.getXml("struct");
-		var music:Sound = AssetsStorage.getSound("music");
+		var git:Bitmap = new Bitmap(AssetsStorage.getBitmapData("stormtroopocat"));
+		var myXml:Xml = AssetsStorage.getXml("structure");
+		var music:Sound = AssetsStorage.getSound("Nyan Cat Theme");
 
 		music.play();
 		Lib.current.addChild(git);

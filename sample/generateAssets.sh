@@ -9,6 +9,7 @@ do
 	filename=${filename%.*}
 	url=${f//\/\//\/}
 	url=${url#./}
+	url=$(pwd)/$url
 	node="\t<asset id=\"$filename\" url=\""$url"\""
 	if [[ $f == *spritesheets* ]]; then
 		if [[ $f == *.xml ]]; then

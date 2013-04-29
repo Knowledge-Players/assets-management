@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<data>
- <group name="auto">
-	<asset id="assets" url="/Users/jbrichardet/Development/assets-management/sample/assets/assets.xml" type="text"/>
-	<asset id="Nyan Cat Theme" url="/Users/jbrichardet/Development/assets-management/sample/assets/Nyan Cat Theme.mp3" type="sound"/>
-	<asset id="stormtroopocat" url="/Users/jbrichardet/Development/assets-management/sample/assets/stormtroopocat.jpg" type="image"/>
-	<asset id="structure" url="/Users/jbrichardet/Development/assets-management/sample/assets/structure.xml" type="text"/>
- </group>
-</data>

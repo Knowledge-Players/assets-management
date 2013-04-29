@@ -1,0 +1,3 @@
+-neko ../src/run.n
+-main RunScript
+-cp .

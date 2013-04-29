@@ -7,8 +7,10 @@ Prepare your assets
 -------------------
 
 With ExAM, you organize your library in an XML file. You can specify groups of assets to manage multi-resolution assets.
-To create the XML file, use the script generateAssets.sh :
-  `./generateAssets.sh $ASSETS_DIR $OUTPUT_FILE`
+To create the XML file, use the run script :
+
+  `haxelib run ExAM $ASSETS_DIR $OUTPUT_FILE`
+  
 where $ASSETS_DIR is the directory where you store your assets and $OUTPUT_FILE is the name of your XML library that will be created (if the file exists, it will be crushed !).
 
 Use your assets
@@ -24,6 +26,9 @@ If you know the type of an asset, you can use specific functions:
 * `getText(id: String): String`
 * `getXml(id: String): Xml`
 * `getSound(id: String): Sound`
+
+If you're using ExAM with NME, you can also use:
+* `getSpritesheet(id: Stirng): aze.display.TilesheetEx`
 
 Try it yourself
 ---------------

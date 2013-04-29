@@ -6,8 +6,14 @@ import sys.FileSystem;
 
 class RunScript{
 
+	private static var isWindows: Bool = false;
+	private static var absolute: Bool = true;
+
 	public static function main():Void
 	{
+		if(new EReg ("window", "i").match(Sys.systemName())){
+			isWindows = true;
+		}
 
 		var args:Array <String> = Sys.args();
 
@@ -16,8 +22,21 @@ class RunScript{
 			Sys.println("You must specified a path to your assets and an outputfile.\nhaxelib run ExAM ASSETS_DIR OUTPUT_FILE");
 			return ;
 		}
-		var assetsDir = new Path(args[2]+args[0]).toString();
-		var outputFile = new Path(args[2] +args[1]).toString();
+		else if(args.length == 4){
+			absolute = args[2] == "true";
+		}
+
+		var assetsDir: String;
+		var outputFile: String;
+		if(absolute){
+			assetsDir = new Path(args[args.length-1]+args[0]).toString();
+			outputFile = new Path(args[args.length - 1] +args[1]).toString();
+		}
+		else{
+			Sys.setCwd(args[args.length-1]);
+			assetsDir = new Path(args[0]).toString();
+			outputFile = new Path(args[1]).toString();
+		}
 		if(!FileSystem.exists(assetsDir)){
 			Sys.println("Specified asset directory ("+assetsDir+") doesn't exist.");
 			return;
@@ -38,8 +57,9 @@ class RunScript{
 		Sys.println("Assets library created successfully in "+outputFile);
 	}
 
-	private static function createOutput(dir: String):String
+	private static function createOutput(dir: String, level: Int = 1):String
 	{
+		Sys.println("dir: "+dir+", is sub: "+level);
 		var output:StringBuf = new StringBuf();
 		var sysFile:EReg = ~/^\..+/;
 		var font:EReg = ~/.*\.[o|t]tf(.hash)?/;
@@ -51,7 +71,19 @@ class RunScript{
 		for(asset in FileSystem.readDirectory(dir)){
 			if(!sysFile.match(asset) && !font.match(asset)){
 				if(!FileSystem.isDirectory(dir + "/" + asset)){
-					var node:String = "\n\t\t<asset id=\"" + Path.withoutExtension(asset) + "\" url=\"" + FileSystem.fullPath(dir+"/"+asset) + "\"";
+					var node: String;
+					if(absolute)
+						node = "\n\t\t<asset id=\"" + Path.withoutExtension(asset) + "\" url=\"" + FileSystem.fullPath(dir+"/"+asset) + "\"";
+					else if(level > 1){
+						var subDir: String;
+						if(isWindows)
+							subDir = dir.substr(dir.indexOf("\\") + 1, dir.length - dir.indexOf("\\"));
+						else
+							subDir= dir.substr(dir.indexOf("/")+1, dir.length - dir.indexOf("/"));
+						node = "\n\t\t<asset id=\"" + Path.withoutExtension(asset) + "\" url=\"" + subDir + "/" + asset + "\"";
+					}
+					else
+						node = "\n\t\t<asset id=\"" + Path.withoutExtension(asset) + "\" url=\""  + asset + "\"";
 					if(spritesheet.match(dir+"/"+asset)){
 						if(text.match(asset))
 							node += " type=\"spritesheet\"/>";
@@ -71,7 +103,7 @@ class RunScript{
 						output.add(node);
 				}
 				else{
-					output.add(createOutput(dir+"/"+asset));
+					output.add(createOutput(dir+"/"+asset, level+1));
 				}
 			}
 		}

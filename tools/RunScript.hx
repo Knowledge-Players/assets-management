@@ -59,7 +59,6 @@ class RunScript{
 
 	private static function createOutput(dir: String, level: Int = 1):String
 	{
-		Sys.println("dir: "+dir+", is sub: "+level);
 		var output:StringBuf = new StringBuf();
 		var sysFile:EReg = ~/^\..+/;
 		var font:EReg = ~/.*\.[o|t]tf(.hash)?/;

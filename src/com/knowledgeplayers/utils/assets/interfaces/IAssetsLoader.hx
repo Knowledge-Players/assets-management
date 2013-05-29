@@ -1,14 +1,12 @@
 package com.knowledgeplayers.utils.assets.interfaces;
 
-import haxe.FastList;
+import haxe.ds.GenericStack;
 import flash.events.IEventDispatcher;
 
-interface IAssetsLoader implements IEventDispatcher {
+interface IAssetsLoader extends IEventDispatcher {
 
-	var total (get_total, null):Int;
-	var current (get_current, null):IAsset;
+	var total (default, null):Int;
 
-	function dispose():Void;
-	function load(list:FastList<IAsset>):Void;
+	function load(list:GenericStack<IAsset>):Void;
 
 }

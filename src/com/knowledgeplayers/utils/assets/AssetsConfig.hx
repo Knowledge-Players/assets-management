@@ -5,7 +5,7 @@ import com.knowledgeplayers.utils.assets.loaders.concrete.SpritesheetAsset;
 #end
 import com.knowledgeplayers.utils.assets.interfaces.IAsset;
 import haxe.xml.Fast;
-import haxe.FastList;
+import haxe.ds.GenericStack;
 import com.knowledgeplayers.utils.assets.loaders.Asset;
 import com.knowledgeplayers.utils.assets.loaders.concrete.ImageAsset;
 import com.knowledgeplayers.utils.assets.loaders.concrete.RawDataAsset;
@@ -13,53 +13,20 @@ import com.knowledgeplayers.utils.assets.loaders.concrete.SoundAsset;
 import com.knowledgeplayers.utils.assets.loaders.concrete.TextAsset;
 
 import flash.events.Event;
-//import flash.utils.Dictionary;
-
-/*
-<!-- example file assets.xml -->
-<?xml version="1.0" encoding="utf-8" ?>
-<data>
- <group name="common">
-	 <asset id="db" url="assets/data/db.csv" type="text" />
-	 <asset id="lang" url="assets/data/lang.xml" type="text" />
-	 <asset id="music" url="assets/sounds/music.mp3" type="sound" />
- </group>
-
-<group name="x1">
-	<asset id="bg" url="assets/textures/bg@x1.jpg" type="image" />
-	<asset id="logotype" url="assets/textures/logotype@x1.jpg" type="image" />
-
-	<asset id="atlas" url="assets/textures/atlas@x1.png" type="image" />
-	<asset id="atlas_xml" url="assets/textures/atlas@x1.xml" type="text" />
-
-	<asset id="compressed_texture" url="assets/textures/compressed_texture@x1.atf" type="raw" />
-</group>
-
-<group name="x2">
-	<asset id="bg" url="assets/textures/bg@x2.jpg" type="image" />
-	<asset id="logotype" url="assets/textures/logotype@x2.jpg" type="image" />
-
-	<asset id="atlas" url="assets/textures/atlas@x2.png" type="image" />
-	<asset id="atlas_xml" url="assets/textures/atlas@x2.xml" type="text" />
-
-	<asset id="compressed_texture" url="assets/textures/compressed_texture@x2.atf" type="raw" />
- </group>
-</data>
-*/
 
 class AssetsConfig extends TextAsset {
 
-	public var list (default, null):FastList<IAsset>;
+	public var list (default, null):GenericStack<IAsset>;
 
-	private var groups:FastList<String>;
-	private var loaders:Hash<Class<Asset>>;
+	private var groups:GenericStack<String>;
+	private var loaders:Map<String, Class<Asset>>;
 
-	public function new(id:String, url:String, ?groups:FastList<String>) {
+	public function new(id:String, url:String, ?groups:GenericStack<String>) {
 		super(id, url);
 
 		this.groups = groups;
-		list = new FastList<IAsset>();
-		loaders = new Hash<Class<Asset>>();
+		list = new GenericStack<IAsset>();
+		loaders = new Map<String, Class<Asset>>();
 
 		registerType("image", ImageAsset);
 		#if nme

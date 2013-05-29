@@ -55,8 +55,10 @@ class ImageAsset extends Asset {
 			getBitmap().bitmapData.dispose();
 		}
 
+		#if flash
 		loader.close();
 		loader.unloadAndStop();
+		#end
 
 		loader = null;
 

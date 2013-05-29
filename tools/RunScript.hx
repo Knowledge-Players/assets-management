@@ -1,3 +1,4 @@
+import EReg;
 import haxe.io.Path;
 import neko.FileSystem;
 import haxe.io.Path;
@@ -7,7 +8,7 @@ import sys.FileSystem;
 class RunScript{
 
 	private static var isWindows: Bool = false;
-	private static var absolute: Bool = true;
+	private static var rootDir: EReg;
 
 	public static function main():Void
 	{
@@ -22,27 +23,23 @@ class RunScript{
 			Sys.println("You must specified a path to your assets and an outputfile.\nhaxelib run ExAM ASSETS_DIR OUTPUT_FILE");
 			return ;
 		}
-		else if(args.length == 4){
-			absolute = args[2] == "true";
-		}
 
 		var assetsDir: String;
 		var outputFile: String;
-		if(absolute){
-			assetsDir = new Path(args[args.length-1]+args[0]).toString();
-			outputFile = new Path(args[args.length - 1] +args[1]).toString();
-		}
-		else{
-			Sys.setCwd(args[args.length-1]);
-			assetsDir = new Path(args[0]).toString();
-			outputFile = new Path(args[1]).toString();
-		}
+
+		Sys.setCwd(args[args.length-1]);
+		assetsDir = new Path(args[0]).toString();
+		outputFile = new Path(args[1]).toString();
+
 		if(!FileSystem.exists(assetsDir)){
 			Sys.println("Specified asset directory ("+assetsDir+") doesn't exist.");
 			return;
 		}
 
 		var output = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<data>\n\t<group name=\"auto\">";
+		if(assetsDir.indexOf("/") == assetsDir.length-1)
+			assetsDir = assetsDir.substr(0, assetsDir.length-1);
+		rootDir = new EReg(Path.withoutDirectory(assetsDir)+"/?", "");//.substr(assetsDir.lastIndexOf("/"));
 		output += createOutput(assetsDir);
 		output += "\n\t</group>\n</data>";
 
@@ -71,30 +68,22 @@ class RunScript{
 			if(!sysFile.match(asset) && !font.match(asset)){
 				if(!FileSystem.isDirectory(dir + "/" + asset)){
 					var node: String;
-					if(absolute)
-						node = "\n\t\t<asset id=\"" + Path.withoutExtension(asset) + "\" url=\"" + FileSystem.fullPath(dir+"/"+asset) + "\"";
-					else if(level > 1){
-						var subDir: String;
-						if(isWindows)
-							subDir = dir.substr(dir.indexOf("\\") + 1, dir.length - dir.indexOf("\\"));
-						else
-							subDir= dir.substr(dir.indexOf("/")+1, dir.length - dir.indexOf("/"));
-						node = "\n\t\t<asset id=\"" + Path.withoutExtension(asset) + "\" url=\"" + subDir + "/" + asset + "\"";
-					}
-					else
-						node = "\n\t\t<asset id=\"" + Path.withoutExtension(asset) + "\" url=\""  + asset + "\"";
+					var dirOnly = rootDir.replace(dir, "");
+					if(dirOnly != "")
+						dirOnly += "/";
+					node = "\n\t\t<asset id=\"" + dirOnly +asset + "\" url=\"" + dirOnly +asset + "\"";
 					if(spritesheet.match(dir+"/"+asset)){
 						if(text.match(asset))
 							node += " type=\"spritesheet\"/>";
 						else
 							node = null;
 					}
+					else if(img.match(asset))
+						node += " type=\"image\"/>";
 					else if(sound.match(asset))
 						node += " type=\"sound\"/>";
 					else if(text.match(asset))
 						node += " type=\"text\"/>";
-					else if(img.match(asset))
-						node += " type=\"image\"/>";
 					else
 						node += " type=\"raw\"/>";
 

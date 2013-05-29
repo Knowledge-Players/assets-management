@@ -27,9 +27,9 @@ class SpritesheetAsset extends TextAsset {
 		var fast = new Fast(getXml().firstElement());
 		var image: ImageAsset = new ImageAsset(id+"_image", fast.att.imagePath);
 
-		image.addEventListener(Event.COMPLETE, onImageLoaded, false, 0, true);
-		image.addEventListener(IOErrorEvent.IO_ERROR, onError, false, 0, true);
-		image.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onError, false, 0, true);
+		image.addEventListener(Event.COMPLETE, onImageLoaded);
+		image.addEventListener(IOErrorEvent.IO_ERROR, onError);
+		image.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onError);
 		image.load();
 	}
 

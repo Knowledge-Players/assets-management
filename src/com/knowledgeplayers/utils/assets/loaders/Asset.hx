@@ -8,7 +8,7 @@ import flash.errors.IllegalOperationError;
 import flash.events.EventDispatcher;
 import com.knowledgeplayers.utils.assets.interfaces.IAsset;
 
-class Asset extends EventDispatcher, implements IAsset {
+class Asset extends EventDispatcher implements IAsset {
 
 	public var id (default, default):String;
 	public var url (default, default):String;

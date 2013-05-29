@@ -9,9 +9,9 @@ Prepare your assets
 With ExAM, you organize your library in an XML file. You can specify groups of assets to manage multi-resolution assets.
 To create the XML file, use the run script :
 
-  `haxelib run ExAM $ASSETS_DIR $OUTPUT_FILE`
+  `haxelib run ExAM $ASSETS_DIR $OUTPUT_FILE (useFullPath = true)`
   
-where $ASSETS_DIR is the directory where you store your assets and $OUTPUT_FILE is the name of your XML library that will be created (if the file exists, it will be crushed !).
+where $ASSETS_DIR is the directory where you store your assets and $OUTPUT_FILE is the name of your XML library that will be created (if the file exists, it will be crushed !). The optional argument useFullPath (default to true) enable full path for assets URL.
 
 Use your assets
 ---------------

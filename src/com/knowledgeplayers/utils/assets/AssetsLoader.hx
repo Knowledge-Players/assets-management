@@ -39,6 +39,7 @@ class AssetsLoader extends EventDispatcher implements IAssetsLoader {
 		asset.removeEventListener(IOErrorEvent.IO_ERROR, loadErrorHandler);
 		asset.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, loadErrorHandler);
 		loaded++;
+		dispatchEvent(new Event("ONE_LOADED"));
 		if(total == loaded){
 			complete();
 		}

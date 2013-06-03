@@ -1,11 +1,11 @@
 {
     "name": "ExAM",
-    "url": "",
+    "url": "https://github.com/Knowledge-Players/assets-management",
     "license": "MIT",
     "tags": [ "flash", "utility" ],
     "description": "External Assets Management utility without embedding assets in SWF (smaller file)",
     "version": "2.0.0",
     "releasenote": "Faster to load asset (4x), support Haxe3",
-    "contributors": [ "JbIPS" ],
+    "contributors": [ "knowledge-players" ],
     "dependencies": {}
 }

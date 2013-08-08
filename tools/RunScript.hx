@@ -1,6 +1,11 @@
 import EReg;
 import haxe.io.Path;
+#if haxe3
+import sys.FileSystem;
+#else
 import neko.FileSystem;
+#end
+
 import haxe.io.Path;
 import sys.io.File;
 import sys.FileSystem;
@@ -26,10 +31,11 @@ class RunScript{
 
 		var assetsDir: String;
 		var outputFile: String;
-
-		Sys.setCwd(args[args.length-1]);
+		
 		assetsDir = new Path(args[0]).toString();
 		outputFile = new Path(args[1]).toString();
+
+		Sys.setCwd(assetsDir);
 
 		if(!FileSystem.exists(assetsDir)){
 			Sys.println("Specified asset directory ("+assetsDir+") doesn't exist.");
@@ -60,13 +66,17 @@ class RunScript{
 		var sysFile:EReg = ~/^\..+/;
 		var font:EReg = ~/.*\.[o|t]tf(.hash)?/;
 		var spritesheet:EReg = ~/.*spritesheet.*/;
-		var text:EReg = ~/.+\.[(xml)|(txt)]/;
-		var img:EReg = ~/.+\.[(png)|(jpg)]/;
-		var sound:EReg = ~/.+\.[(mp3)|(wav)]/;
+		var text:EReg = ~/.+\.xml|txt|json/;
+		var img:EReg = ~/.+\.png|jpg|jpeg/;
+		var sound:EReg = ~/.+\.mp3|wav/;
 
 		for(asset in FileSystem.readDirectory(dir)){
 			if(!sysFile.match(asset) && !font.match(asset)){
 				if(!FileSystem.isDirectory(dir + "/" + asset)){
+
+					trace(asset);
+					trace(img.match(asset));
+
 					var node: String;
 					var dirOnly = rootDir.replace(dir, "");
 					if(dirOnly != "")
@@ -79,7 +89,10 @@ class RunScript{
 							node = null;
 					}
 					else if(img.match(asset))
+					{
 						node += " type=\"image\"/>";
+
+					}
 					else if(sound.match(asset))
 						node += " type=\"sound\"/>";
 					else if(text.match(asset))
@@ -89,6 +102,8 @@ class RunScript{
 
 					if(node != null)
 						output.add(node);
+
+					trace(node);
 				}
 				else{
 					output.add(createOutput(dir+"/"+asset, level+1));

@@ -9,4 +9,4 @@ before_install:
 
 script:
   - cd sample
-  - haxe sample/sampleHX.hxml
+  - haxe sampleHX.hxml

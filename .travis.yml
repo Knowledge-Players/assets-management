@@ -8,4 +8,5 @@ before_install:
   - sudo apt-get install gcc-multilib g++-multilib -y # since VM is 64bit but hxcpp builds 32bit by default
 
 script:
+  - cd sample
   - haxe sample/sampleHX.hxml

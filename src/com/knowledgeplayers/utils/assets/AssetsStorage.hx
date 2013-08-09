@@ -5,7 +5,13 @@ import com.knowledgeplayers.utils.assets.loaders.concrete.SpritesheetAsset;
 import aze.display.SparrowTilesheet;
 import aze.display.TilesheetEx;
 #end
+
+#if openfl
+import openfl.Assets;
+#elseif nme
 import nme.Assets;
+#end
+
 import flash.media.Sound;
 import com.knowledgeplayers.utils.assets.loaders.concrete.SoundAsset;
 import com.knowledgeplayers.utils.assets.loaders.concrete.TextAsset;

@@ -1,8 +1,8 @@
 package ;
 
 import flash.Lib;
+import haxe.ds.GenericStack;
 import flash.display.Bitmap;
-import haxe.FastList;
 import com.knowledgeplayers.utils.assets.interfaces.IAsset;
 import flash.events.ErrorEvent;
 import flash.media.Sound;
@@ -58,7 +58,7 @@ class Main{
 	 * Assets to load
 	 * @param list
 	 */
-	private function loadAssets(list:FastList<IAsset>):Void {
+	private function loadAssets(list:GenericStack<IAsset>):Void {
 		loader.load(list);
 	}
 

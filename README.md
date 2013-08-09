@@ -1,5 +1,5 @@
-ExAM (assets-management port)
-=============================
+ExAM [![Build Status](https://travis-ci.org/Knowledge-Players/assets-management.png?branch=master)](https://travis-ci.org/Knowledge-Players/assets-management)
+====
 
 Assets management for Haxe/NME. Very similar to nme.Assets but don't embed assets in the SWF (for smaller files). This library is based on the one wrote in AS3 by [Krecha Games](https://github.com/krechagames/assets-management), thanks a lot guys !
 

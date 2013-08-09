@@ -4,8 +4,8 @@
     "license": "MIT",
     "tags": [ "flash", "utility" ],
     "description": "External Assets Management utility without embedding assets in SWF (smaller file)",
-    "version": "2.0.0",
-    "releasenote": "Faster to load asset (4x), support Haxe3",
+    "version": "2.0.1",
+    "releasenote": "Dispatch event for each asset loaded",
     "contributors": [ "knowledge-players" ],
     "dependencies": {}
 }

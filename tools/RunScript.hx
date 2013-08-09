@@ -1,6 +1,11 @@
 import EReg;
 import haxe.io.Path;
+#if haxe3
+import sys.FileSystem;
+#else
 import neko.FileSystem;
+#end
+
 import haxe.io.Path;
 import sys.io.File;
 import sys.FileSystem;
@@ -8,7 +13,10 @@ import sys.FileSystem;
 class RunScript{
 
 	private static var isWindows: Bool = false;
-	private static var rootDir: EReg;
+	// private static var rootDir: EReg;
+	private static var assetsDir:String;
+
+	static var relPath:Bool;
 
 	public static function main():Void
 	{
@@ -24,12 +32,14 @@ class RunScript{
 			return ;
 		}
 
-		var assetsDir: String;
 		var outputFile: String;
-
-		Sys.setCwd(args[args.length-1]);
+		
 		assetsDir = new Path(args[0]).toString();
 		outputFile = new Path(args[1]).toString();
+
+		relPath = (args[2] == "--relPath");
+
+		Sys.setCwd(assetsDir);
 
 		if(!FileSystem.exists(assetsDir)){
 			Sys.println("Specified asset directory ("+assetsDir+") doesn't exist.");
@@ -37,9 +47,8 @@ class RunScript{
 		}
 
 		var output = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<data>\n\t<group name=\"auto\">";
-		if(assetsDir.indexOf("/") == assetsDir.length-1)
-			assetsDir = assetsDir.substr(0, assetsDir.length-1);
-		rootDir = new EReg(Path.withoutDirectory(assetsDir)+"/?", "");//.substr(assetsDir.lastIndexOf("/"));
+		// if(assetsDir.indexOf("/") == assetsDir.length-1) 	assetsDir = assetsDir.substr(0, assetsDir.length-1);
+		// rootDir = new EReg(Path.withoutDirectory(assetsDir)+"/?", "");//.substr(assetsDir.lastIndexOf("/"));
 		output += createOutput(assetsDir);
 		output += "\n\t</group>\n</data>";
 
@@ -60,18 +69,27 @@ class RunScript{
 		var sysFile:EReg = ~/^\..+/;
 		var font:EReg = ~/.*\.[o|t]tf(.hash)?/;
 		var spritesheet:EReg = ~/.*spritesheet.*/;
-		var text:EReg = ~/.+\.[(xml)|(txt)]/;
-		var img:EReg = ~/.+\.[(png)|(jpg)]/;
-		var sound:EReg = ~/.+\.[(mp3)|(wav)]/;
+		var text:EReg = ~/.+\.xml|txt|json/;
+		var img:EReg = ~/.+\.png|jpg|jpeg/;
+		var sound:EReg = ~/.+\.mp3|wav/;
+
+		//remove assetsDir from basePath if relPath option has been set
+		// the "/" at the end of the path pattern is optional
+		var basePath = (relPath) ? new EReg(assetsDir+"/?","").replace(dir,"") : assetsDir;
+		if (basePath!="") basePath += "/";
+
 
 		for(asset in FileSystem.readDirectory(dir)){
 			if(!sysFile.match(asset) && !font.match(asset)){
 				if(!FileSystem.isDirectory(dir + "/" + asset)){
+
+					
 					var node: String;
-					var dirOnly = rootDir.replace(dir, "");
-					if(dirOnly != "")
-						dirOnly += "/";
-					node = "\n\t\t<asset id=\"" + dirOnly +asset + "\" url=\"" + dirOnly +asset + "\"";
+					// var dirOnly = rootDir.replace(dir, "");
+					// if(dirOnly != "")
+					// 	dirOnly += "/";
+
+					node = "\n\t\t<asset id=\"" + basePath +asset + "\" url=\"" + basePath +asset + "\"";
 					if(spritesheet.match(dir+"/"+asset)){
 						if(text.match(asset))
 							node += " type=\"spritesheet\"/>";
@@ -79,7 +97,10 @@ class RunScript{
 							node = null;
 					}
 					else if(img.match(asset))
+					{
 						node += " type=\"image\"/>";
+
+					}
 					else if(sound.match(asset))
 						node += " type=\"sound\"/>";
 					else if(text.match(asset))
@@ -87,8 +108,10 @@ class RunScript{
 					else
 						node += " type=\"raw\"/>";
 
+
 					if(node != null)
 						output.add(node);
+
 				}
 				else{
 					output.add(createOutput(dir+"/"+asset, level+1));
@@ -98,4 +121,7 @@ class RunScript{
 
 		return output.toString();
 	}
+
+
+
 }

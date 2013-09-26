@@ -1,4 +1,4 @@
-#if nme
+#if (nme || openfl)
 package com.knowledgeplayers.utils.assets.loaders.concrete;
 
 import flash.display.BitmapData;

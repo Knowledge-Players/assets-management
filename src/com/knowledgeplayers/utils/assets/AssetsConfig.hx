@@ -1,6 +1,6 @@
 package com.knowledgeplayers.utils.assets;
 
-#if nme
+#if (nme || openfl)
 import com.knowledgeplayers.utils.assets.loaders.concrete.SpritesheetAsset;
 #end
 import com.knowledgeplayers.utils.assets.interfaces.IAsset;
@@ -29,7 +29,7 @@ class AssetsConfig extends TextAsset {
 		loaders = new Map<String, Class<Asset>>();
 
 		registerType("image", ImageAsset);
-		#if nme
+		#if (nme || openfl)
 		registerType("spritesheet", SpritesheetAsset);
 		#end
 		registerType("text", TextAsset);

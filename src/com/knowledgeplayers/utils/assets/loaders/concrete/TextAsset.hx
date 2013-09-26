@@ -36,7 +36,7 @@ class TextAsset extends Asset {
 
 	private function onError(e:Event):Void
 	{
-		flash.Lib.trace("Error during TextAsset loading: "+e);
+		trace("Error during TextAsset loading: "+e);
 	}
 
 	override public function dispose():Void {

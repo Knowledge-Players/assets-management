@@ -1,15 +1,15 @@
 package com.knowledgeplayers.utils.assets;
 
-#if nme
+#if openfl
+import openfl.Assets;
 import com.knowledgeplayers.utils.assets.loaders.concrete.SpritesheetAsset;
 import aze.display.SparrowTilesheet;
 import aze.display.TilesheetEx;
-#end
-
-#if openfl
-import openfl.Assets;
 #elseif nme
 import nme.Assets;
+import com.knowledgeplayers.utils.assets.loaders.concrete.SpritesheetAsset;
+import aze.display.SparrowTilesheet;
+import aze.display.TilesheetEx;
 #end
 
 import flash.media.Sound;
@@ -109,7 +109,7 @@ class AssetsStorage {
 		#end
 	}
 
-	#if nme
+	#if (nme || openfl)
 	public static function getSpritesheet(id: String):Null<TilesheetEx>
 	{
 		#if flash

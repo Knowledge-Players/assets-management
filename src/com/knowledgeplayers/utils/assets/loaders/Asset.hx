@@ -1,10 +1,8 @@
 package com.knowledgeplayers.utils.assets.loaders;
 
-import flash.events.Event;
-import flash.events.ProgressEvent;
-import flash.events.IOErrorEvent;
-import flash.events.SecurityErrorEvent;
+#if flash
 import flash.errors.IllegalOperationError;
+#end
 import flash.events.EventDispatcher;
 import com.knowledgeplayers.utils.assets.interfaces.IAsset;
 
@@ -20,11 +18,19 @@ class Asset extends EventDispatcher implements IAsset {
 	}
 
 	public function dispose():Void {
+		#if flash
 		throw new IllegalOperationError("Error: dispose() is an abstract method. Overwrite it in concrete class.");
+		#else
+		throw "Error: dispose() is an abstract method. Overwrite it in concrete class.";
+		#end
 	}
 
 	public function load():Void {
+		#if flash
 		throw new IllegalOperationError("Error: load() is an abstract method. Overwrite it in concrete class.");
+		#else
+		throw "Error: dispose() is an abstract method. Overwrite it in concrete class.";
+		#end
 	}
 
 	override public function toString():String {

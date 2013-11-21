@@ -25,30 +25,49 @@ class AssetsStorage {
 
 	private static var container:Map<String, IAsset> = new Map<String, IAsset>();
 
+	/**
+	* Register an asset in the storage
+	* @param asset : The asset to register
+	*/
 	public static function setAsset(asset:IAsset):Void
 	{
 		container.set(asset.id, asset);
 		asset.addEventListener(Event.REMOVED, removedAssetHandler, false, 0, true);
 	}
 
-	private static function removedAssetHandler(event:Event):Void
-	{
-		var id:String = cast(event.target, IAsset).id;
-
-		if(hasAsset(id))
-			container.remove(id);
-	}
-
+	/**
+	* Tests the existence of an asset
+	* @param id : ID of the asset to test
+	* @return true if the asset is in storage
+	**/
 	public static function hasAsset(id:String):Bool
 	{
 		return container.exists(id);
 	}
 
-	public static function getAsset(id:String):IAsset
+	/**
+	* @return the asset with this id, or null if it doesn't exist
+	**/
+	public static function getAsset(id:String):Null<IAsset>
 	{
 		return container.get(id);
 	}
 
+	/**
+	* Returns all the assets in a given folder
+	* @param folder : Path of the folder
+	* @return a list with all the assets in the folder
+	**/
+	public static function getFolderContent(folder:String, ?extension: String):List<IAsset>
+	{
+		return Lambda.filter(container, function(element: IAsset){
+			return StringTools.startsWith(element.url, folder) && (extension != null ? StringTools.endsWith(element.url, extension) : true);
+		});
+	}
+
+	/**
+	* @return the bitmapData with this id, or null if it doesn't exist
+	**/
 	public static function getBitmapData(id:String):Null<BitmapData>
 	{
 		#if flash
@@ -64,6 +83,9 @@ class AssetsStorage {
 		#end
 	}
 
+	/**
+	* @return the text with this id, or null if it doesn't exist
+	**/
 	public static function getText(id:String):Null<String>
 	{
 		#if flash
@@ -79,6 +101,9 @@ class AssetsStorage {
 		#end
 	}
 
+	/**
+	* @return the Xml with this id, or null if it doesn't exist
+	**/
 	public static function getXml(id:String):Null<Xml>
 	{
 		#if flash
@@ -94,6 +119,9 @@ class AssetsStorage {
 		#end
 	}
 
+	/**
+	* @return the Sound with this id, or null if it doesn't exist
+	**/
 	public static function getSound(id:String):Null<Sound>
 	{
 		#if flash
@@ -110,6 +138,9 @@ class AssetsStorage {
 	}
 
 	#if (nme || openfl)
+	/**
+	* @return the Spritesheet with this id, or null if it doesn't exist
+	**/
 	public static function getSpritesheet(id: String):Null<TilesheetEx>
 	{
 		#if flash
@@ -128,6 +159,10 @@ class AssetsStorage {
 	}
 	#end
 
+	/**
+	* Remove an asset from storage
+	* @param id : ID of the asset to remove
+	**/
 	public static function removeAsset(id:String):Void
 	{
 		var asset:IAsset = getAsset(id);
@@ -135,5 +170,15 @@ class AssetsStorage {
 
 		container.remove(id);
 		asset.removeEventListener(Event.REMOVED, removedAssetHandler);
+	}
+
+	// Private
+
+	private static function removedAssetHandler(event:Event):Void
+	{
+		var id:String = cast(event.target, IAsset).id;
+
+		if(hasAsset(id))
+			container.remove(id);
 	}
 }

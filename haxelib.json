@@ -4,8 +4,8 @@
     "license": "MIT",
     "tags": [ "flash", "utility" ],
     "description": "External Assets Management utility without embedding assets in SWF (smaller file)",
-    "version": "2.0.1",
-    "releasenote": "Dispatch event for each asset loaded",
+    "version": "2.1.0",
+    "releasenote": "Get all assets in a folder + misc improvements",
     "contributors": [ "knowledge-players" ],
     "dependencies": {}
 }

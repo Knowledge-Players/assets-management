@@ -10,7 +10,7 @@ With ExAM, you organize your library in an XML file. You can specify groups of a
 To create the XML file, use the run script :
 
   `haxelib run ExAM $ASSETS_DIR $OUTPUT_FILE (useFullPath = true)`
-  
+
 where $ASSETS_DIR is the directory where you store your assets and $OUTPUT_FILE is the name of your XML library that will be created (if the file exists, it will be crushed !). The optional argument useFullPath (default to true) enable full path for assets URL.
 
 Use your assets
@@ -21,11 +21,14 @@ When you receive the "go" signal (an Event.COMPLETE), your assets will be waitin
 
 **Typed assets:**
 
-If you know the type of an asset, you can use specific functions: 
+If you know the type of an asset, you can use specific functions:
 * `getBitmapData(id: String): BitmapData`
 * `getText(id: String): String`
 * `getXml(id: String): Xml`
 * `getSound(id: String): Sound`
+
+If you want to get all assets in a specific folder:
+* `getFolderContent(folder:String, ?extension: String):List<IAsset>`
 
 If you're using ExAM with NME, you can also use:
 * `getSpritesheet(id: Stirng): aze.display.TilesheetEx`

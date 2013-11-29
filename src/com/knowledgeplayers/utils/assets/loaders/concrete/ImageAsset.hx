@@ -30,7 +30,7 @@ class ImageAsset extends Asset {
 	override public function load():Void {
 		#if flash
 		var loaderContext:LoaderContext = new LoaderContext();
-		loaderContext.imageDecodingPolicy = ImageDecodingPolicy.ON_LOAD;
+		//loaderContext.imageDecodingPolicy = ImageDecodingPolicy.ON_LOAD;
 		#end
 
 		loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadEventHandler);
